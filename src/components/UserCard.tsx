@@ -1,13 +1,14 @@
 import type { FC } from 'react';
 
 interface UserCardProps {
+    idUser: string;
     name: string;
     age: number;
     email: string;
     isOnline: boolean;
 }
 
-const UserCard: FC<UserCardProps> = ({ name, age, email, isOnline }: UserCardProps) => {
+const UserCard: FC<UserCardProps> = ({ idUser, name, age, email, isOnline }: UserCardProps) => {
     let classOnline = 'circle-red';
     let textOnline = 'Offline';
 
@@ -17,7 +18,7 @@ const UserCard: FC<UserCardProps> = ({ name, age, email, isOnline }: UserCardPro
     }
 
     return (
-        <div className='user-card'>
+        <div className='user-card' id={idUser}>
             <h2>{name}</h2>
             <div className='user-card-body'>
                 <p>{age}</p>
