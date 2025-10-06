@@ -36,7 +36,8 @@
 
 .user-card {
     display: inline-block;
-    margin: auto 20px;
+    margin: 20px;
+    box-shadow: 1px 1px 12px red;
 }
 
 .circle-red::before {
