@@ -1,5 +1,3 @@
-import React from 'react';
-
 /*  Make the interface to the Componetn PROPS
     PROPS = PROPERTIES = ATTRIBUTES */
 
