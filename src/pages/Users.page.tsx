@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { User } from '../models/User';
 import UserCard from '../components/UserCard';
+import SimpleNav from '../components/SimpleNav';
 
 function randomId(str: string) {
     return `${str}${(Math.random() + 1) * 40}`;
@@ -42,13 +43,15 @@ export default function UserPage() {
 
             // "remove" timeout
             clearTimeout(timeout);
-        }, 2000);
+        }, 1000);
 
         // Load one time and when change "users"
     }, []);
 
     return (
         <div className='container page users-page'>
+            <SimpleNav />
+
             {/* Make a map from users */}
             {users.map((user) => {
                 return <UserCard idUser={user.id} age={user.age} email={user.email} isOnline={user.isOnline} name={user.name} key={user.id} />;

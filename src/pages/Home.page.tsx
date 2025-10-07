@@ -1,9 +1,10 @@
-import React, { useState, type ReactNode } from 'react';
+import { useState, type ReactNode } from 'react';
 import UserCard from '../components/UserCard';
 import ActionButton from '../components/ActionButton';
 import Card from '../components/Card';
 import StyledButton from '../components/StyledButton';
 import Separator from '../components/Separator';
+import SimpleNav from '../components/SimpleNav';
 
 export default function HomePage() {
     const [count1, setCount1] = useState(0);
@@ -19,6 +20,8 @@ export default function HomePage() {
 
     return (
         <>
+            <SimpleNav />
+
             {/* Excersice N°1: Reactive count */}
             <ActionButton label={`Clicks: ${count1}`} onAction={handleClickActionButton} />
 
