@@ -41,7 +41,11 @@ nav {
 .user-card {
     display: inline-block;
     margin: 20px;
-    box-shadow: 1px 1px 12px red;
+    box-shadow: 1px 1px 12px rgba(155, 155, 155, 0.253);
+}
+
+.user-card-footer {
+    padding: 10px;
 }
 
 .circle-red::before {
@@ -51,6 +55,7 @@ nav {
     height: 50px;
     background-color: red;
     color: red;
+    border-radius: 50%;
 }
 
 .circle-green::before {
@@ -60,6 +65,7 @@ nav {
     height: 50px;
     color: green;
     background-color: green;
+    border-radius: 50%;
 }
 
 .ctn-nav {

@@ -2,9 +2,10 @@ import { useState, useEffect } from 'react';
 import { User } from '../models/User';
 import UserCard from '../components/UserCard';
 import SimpleNav from '../components/SimpleNav';
+import Loader from '../components/Loader';
 
 function randomId(str: string) {
-    return `${str}${(Math.random() + 1) * 40}`;
+    return `${str}${parseInt(((Math.random() + 1) * 90000).toString(), 16)}`;
 }
 
 function getUsersRandom() {
@@ -25,14 +26,32 @@ function getUsersRandom() {
 }
 
 export default function UserPage() {
+    const [loading, setLoading] = useState<boolean>(true);
     const [users, setUsers] = useState<User[]>([]);
 
     const updateUsers = (usersObtained: User[]) => {
-        console.log(usersObtained);
-
         // Set the new users
         setUsers(usersObtained);
     };
+
+    const handleChangeOnline = (id: string): void => {
+        setUsers((prevUsers) => {
+            return prevUsers.map((user) => {
+                if (user.id === id) {
+                    return { ...user, isOnline: !user.isOnline };
+                }
+                return user;
+            });
+        });
+    };
+
+    useEffect(() => {
+        const timeout = setTimeout(() => {
+            setLoading(false);
+        }, 1000);
+
+        return () => clearTimeout(timeout);
+    }, []);
 
     useEffect(() => {
         // Simluate request
@@ -40,22 +59,23 @@ export default function UserPage() {
             const usersObtained: User[] = getUsersRandom();
 
             updateUsers(usersObtained);
-
             // "remove" timeout
-            clearTimeout(timeout);
         }, 1000);
 
-        // Load one time and when change "users"
+        return () => clearTimeout(timeout);
     }, []);
 
     return (
         <div className='container page users-page'>
             <SimpleNav />
 
-            {/* Make a map from users */}
-            {users.map((user) => {
-                return <UserCard idUser={user.id} age={user.age} email={user.email} isOnline={user.isOnline} name={user.name} key={user.id} />;
-            })}
+            {loading === true ? (
+                <Loader />
+            ) : (
+                users.map((user) => {
+                    return <UserCard idUser={user.id} age={user.age} email={user.email} isOnline={user.isOnline} name={user.name} key={user.id} changeIsOnline={() => handleChangeOnline(user.id)} />;
+                })
+            )}
         </div>
     );
 }

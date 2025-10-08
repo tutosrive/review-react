@@ -6,9 +6,10 @@ interface UserCardProps {
     age: number;
     email: string;
     isOnline: boolean;
+    changeIsOnline: () => void;
 }
 
-const UserCard: FC<UserCardProps> = ({ idUser, name, age, email, isOnline }: UserCardProps) => {
+const UserCard: FC<UserCardProps> = ({ idUser, name, age, email, isOnline, changeIsOnline }: UserCardProps) => {
     let classOnline = 'circle-red';
     let textOnline = 'Offline';
 
@@ -23,8 +24,9 @@ const UserCard: FC<UserCardProps> = ({ idUser, name, age, email, isOnline }: Use
             <div className='user-card-body'>
                 <p>{age}</p>
                 <p>{email}</p>
-                <div className={`${classOnline}`}>
-                    <p>{textOnline}</p>
+                <div className={`${classOnline}`}></div>
+                <div className='user-card-footer'>
+                    <button onClick={changeIsOnline}>{textOnline}</button>
                 </div>
             </div>
         </div>

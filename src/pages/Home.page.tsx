@@ -1,5 +1,4 @@
 import { useState, type ReactNode } from 'react';
-import UserCard from '../components/UserCard';
 import ActionButton from '../components/ActionButton';
 import Card from '../components/Card';
 import StyledButton from '../components/StyledButton';
@@ -40,16 +39,6 @@ export default function HomePage() {
             <Card>
                 <ActionButton onAction={handleClickActionButton} />
             </Card>
-
-            <Card />
-            {/* User card: Online */}
-            <UserCard idUser='user-1' name='Santiago' age={20} email='srm@gmail.com' isOnline={true} />
-
-            {/* User card: Offline */}
-            <UserCard idUser='user-2' name='Andrés' age={20} email='adr@gmail.com' isOnline={false} />
-
-            {/* User card: Online */}
-            <UserCard idUser='user-3' name='Carlos' age={17} email='crl@gmail.com' isOnline={true} />
         </>
     );
 }
