@@ -3,6 +3,7 @@ import { User } from '../models/User';
 import UserCard from '../components/UserCard';
 import SimpleNav from '../components/SimpleNav';
 import Loader from '../components/Loader';
+import UserCardContainer from '../components/UserCardContainer';
 
 function randomId(str: string) {
     return `${str}${parseInt(((Math.random() + 1) * 90000).toString(), 16)}`;
@@ -30,7 +31,6 @@ export default function UserPage() {
     const [users, setUsers] = useState<User[]>([]);
 
     const updateUsers = (usersObtained: User[]) => {
-        // Set the new users
         setUsers(usersObtained);
     };
 
@@ -72,9 +72,14 @@ export default function UserPage() {
             {loading === true ? (
                 <Loader />
             ) : (
-                users.map((user) => {
-                    return <UserCard idUser={user.id} age={user.age} email={user.email} isOnline={user.isOnline} name={user.name} key={user.id} changeIsOnline={() => handleChangeOnline(user.id)} />;
-                })
+                <div id='users-cards'>
+                    {users.map((user) => {
+                        // I want middle and middle (index/2 for every component)
+                        return <UserCard idUser={user.id} age={user.age} email={user.email} isOnline={user.isOnline} name={user.name} key={user.id} changeIsOnline={() => handleChangeOnline(user.id)} />;
+                    })}
+
+                    {<UserCardContainer />}
+                </div>
             )}
         </div>
     );
