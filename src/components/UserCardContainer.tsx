@@ -64,7 +64,7 @@ const UserCardContainer: FC = () => {
             ) : (
                 <div id='users-cards-container'>
                     {users.map((user) => {
-                        return <UserCard age={user.age} changeIsOnline={() => handleChangeOnline(user.id)} email={user.email} idUser={user.id} isOnline={user.isOnline} name={user.name} key={`${user.id}`} />;
+                        return <UserCard age={user.age} changeIsOnline={() => handleChangeOnline(user.id)} email={user.email} isOnline={user.isOnline} name={user.name} key={`${user.id}`} />;
                     })}
                 </div>
             )}

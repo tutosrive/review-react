@@ -74,8 +74,7 @@ export default function UserPage() {
             ) : (
                 <div id='users-cards'>
                     {users.map((user) => {
-                        // I want middle and middle (index/2 for every component)
-                        return <UserCard idUser={user.id} age={user.age} email={user.email} isOnline={user.isOnline} name={user.name} key={user.id} changeIsOnline={() => handleChangeOnline(user.id)} />;
+                        return <UserCard age={user.age} email={user.email} isOnline={user.isOnline} name={user.name} key={user.id} changeIsOnline={() => handleChangeOnline(user.id)} />;
                     })}
 
                     {<UserCardContainer />}
