@@ -1,8 +1,40 @@
 #root {
     max-width: 1280px;
-    margin: 0 auto;
-    padding: 2rem;
+    margin: 0;
     text-align: center;
+    /* padding: 20px; */
+}
+
+header {
+    margin: 10px auto auto 0;
+    width: 100vw;
+    position: fixed;
+    top: -10px;
+    background-color: #33333380;
+    height: 25px;
+    padding: 15px;
+    backdrop-filter: blur(15px);
+}
+
+main {
+    margin: 80px auto auto auto;
+}
+
+footer {
+    position: fixed; /* Float */
+    bottom: 0;
+    width: 100%;
+    /* margin: auto 0 10px 0; */
+    height: 25px;
+    padding: 15px;
+    backdrop-filter: blur(15px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.text-success {
+    color: rgb(0, 255, 21);
 }
 
 nav {
@@ -73,16 +105,12 @@ nav {
 }
 
 .nav-main {
-    box-shadow: 0 0 11px rgb(116, 116, 116);
-    padding: 10px;
-    display: block;
-    position: absolute;
-    top: 10px !important;
-    left: 45vw;
+    width: 100%;
 }
 
 #users-cards-container {
     box-shadow: 0 0 10px rgb(105, 185, 250);
+    margin: auto 20px;
 }
 
 .nav-link {
@@ -107,6 +135,7 @@ nav {
 
 .card {
     padding: 2em;
+    display: inline-block;
 }
 
 .read-the-docs {
