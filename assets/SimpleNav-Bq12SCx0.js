@@ -1,1 +1,0 @@
-import{j as s,N as a}from"./index-1Zd22EaM.js";function e(){return s.jsx("div",{className:"ctn-nav",children:s.jsxs("nav",{className:"nav-main",children:[s.jsx(a,{className:"nav-link",to:"/",children:"Home"}),s.jsx(a,{className:"nav-link",to:"/users",children:"Users"})]})})}export{e as S};
