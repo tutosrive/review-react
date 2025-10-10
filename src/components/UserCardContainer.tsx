@@ -1,14 +1,11 @@
-// interface UserCardContainerProps{
-//     users
-// }
-
 import { useEffect, useState, type FC } from 'react';
 import { User } from '../models/User';
 import UserCard from './UserCard';
+import Loader from './Loader';
 
 // Simulate query/fetch
 function randomId(str: string) {
-    return `${str}${parseInt(((Math.random() + 1) * 90000).toString(), 16)}`;
+    return `${str}${crypto.randomUUID()}`;
 }
 
 function getUsersRandom() {
@@ -30,6 +27,7 @@ function getUsersRandom() {
 
 const UserCardContainer: FC = () => {
     const [users, setUsers] = useState<User[]>([]);
+    const [isLoadingContainer, setIsLoadingContainer] = useState<boolean>(true);
 
     const handleChangeOnline = (id: string) => {
         setUsers((prevUsers) => {
@@ -43,7 +41,7 @@ const UserCardContainer: FC = () => {
     };
 
     useEffect(() => {
-        const randomTimeWait: number = Math.random() * (10 - 5) + 5;
+        const randomTimeWait: number = (Math.random() * (3 - 1) + 1) * 1000;
 
         const timeout = setTimeout(() => {
             // Get the users
@@ -52,17 +50,25 @@ const UserCardContainer: FC = () => {
             // Set the user obtained!
             setUsers(usersGet);
             console.log(randomTimeWait);
+
+            setIsLoadingContainer(false);
         }, randomTimeWait);
 
         return () => clearTimeout(timeout);
     }, []);
 
     return (
-        <div id='users-cards-container'>
-            {users.map((user) => {
-                return <UserCard age={user.age} changeIsOnline={() => handleChangeOnline(user.id)} email={user.email} idUser={user.id} isOnline={user.isOnline} name={user.name} key={`user-${user.id}`} />;
-            })}
-        </div>
+        <>
+            {isLoadingContainer === true ? (
+                <Loader />
+            ) : (
+                <div id='users-cards-container'>
+                    {users.map((user) => {
+                        return <UserCard age={user.age} changeIsOnline={() => handleChangeOnline(user.id)} email={user.email} idUser={user.id} isOnline={user.isOnline} name={user.name} key={`${user.id}`} />;
+                    })}
+                </div>
+            )}
+        </>
     );
 };
 

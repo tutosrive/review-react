@@ -26,7 +26,9 @@ const UserCard: FC<UserCardProps> = ({ idUser, name, age, email, isOnline, chang
                 <p>{email}</p>
                 <div className={`${classOnline}`}></div>
                 <div className='user-card-footer'>
-                    <button onClick={changeIsOnline}>{textOnline}</button>
+                    <button type='button' onClick={changeIsOnline}>
+                        {textOnline}
+                    </button>
                 </div>
             </div>
         </div>
