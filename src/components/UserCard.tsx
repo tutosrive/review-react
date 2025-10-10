@@ -1,7 +1,6 @@
 import type { FC } from 'react';
 
 interface UserCardProps {
-    idUser: string;
     name: string;
     age: number;
     email: string;
@@ -9,7 +8,7 @@ interface UserCardProps {
     changeIsOnline: () => void;
 }
 
-const UserCard: FC<UserCardProps> = ({ idUser, name, age, email, isOnline, changeIsOnline }: UserCardProps) => {
+const UserCard: FC<UserCardProps> = ({ name, age, email, isOnline, changeIsOnline }: UserCardProps) => {
     let classOnline = 'circle-red';
     let textOnline = 'Offline';
 
@@ -19,14 +18,16 @@ const UserCard: FC<UserCardProps> = ({ idUser, name, age, email, isOnline, chang
     }
 
     return (
-        <div className='user-card' id={idUser}>
+        <div className='user-card'>
             <h2>{name}</h2>
             <div className='user-card-body'>
                 <p>{age}</p>
                 <p>{email}</p>
                 <div className={`${classOnline}`}></div>
                 <div className='user-card-footer'>
-                    <button onClick={changeIsOnline}>{textOnline}</button>
+                    <button type='button' onClick={changeIsOnline}>
+                        {textOnline}
+                    </button>
                 </div>
             </div>
         </div>

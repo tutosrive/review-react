@@ -81,6 +81,10 @@ nav {
     left: 45vw;
 }
 
+#users-cards-container {
+    box-shadow: 0 0 10px rgb(105, 185, 250);
+}
+
 .nav-link {
     margin: 10px;
     padding: 5px;
