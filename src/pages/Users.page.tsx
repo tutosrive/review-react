@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
-import SimpleNav from '../components/SimpleNav';
 import Loader from '../components/Loader';
 import UserCardContainer from '../components/UserCardContainer';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 export default function UserPage() {
     const [loading, setLoading] = useState<boolean>(true);
@@ -16,9 +17,9 @@ export default function UserPage() {
 
     return (
         <div className='container page users-page'>
-            <SimpleNav />
-
-            {loading === true ? <Loader /> : <UserCardContainer />}
+            <Header />
+            <main>{loading === true ? <Loader /> : <UserCardContainer />}</main>
+            <Footer />
         </div>
     );
 }
