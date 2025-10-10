@@ -1,0 +1,1 @@
+import{j as e}from"./index-__O20ReU.js";import{H as s,F as i}from"./Footer-Dc2lDBtH.js";function n(){return e.jsxs("div",{children:[e.jsx(s,{}),e.jsx("main",{children:e.jsx("p",{children:"Will be implement this!"})}),e.jsx(i,{})]})}export{n as default};
