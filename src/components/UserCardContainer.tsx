@@ -14,9 +14,9 @@ function randomId(str: string) {
 function getUsersRandom() {
     const usersLocal = [];
     let flag = false;
-    const names = ['Santiago', 'Andrés', 'Samuel', 'Nicolás', 'Antonio'];
+    const names = ['Santiago', 'Andrés', 'Samuel', 'Nicolás', 'Antonio', 'Eduardo', 'Isabella', 'Luisa', 'Miguel'];
 
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < names.length; i++) {
         flag = !flag;
         const idUser = randomId('user-');
         const age = parseInt(((Math.random() + 1) * 60).toString(), 10);
@@ -51,6 +51,7 @@ const UserCardContainer: FC = () => {
 
             // Set the user obtained!
             setUsers(usersGet);
+            console.log(randomTimeWait);
         }, randomTimeWait);
 
         return () => clearTimeout(timeout);
