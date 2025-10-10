@@ -2,32 +2,13 @@ import { useEffect, useState, type FC } from 'react';
 import { User } from '../models/User';
 import UserCard from './UserCard';
 import Loader from './Loader';
-
-// Simulate query/fetch
-function randomId(str: string) {
-    return `${str}${crypto.randomUUID()}`;
-}
-
-function getUsersRandom() {
-    const usersLocal = [];
-    let flag = false;
-    const names = ['Santiago', 'Andrés', 'Samuel', 'Nicolás', 'Antonio', 'Eduardo', 'Isabella', 'Luisa', 'Miguel'];
-
-    for (let i = 0; i < names.length; i++) {
-        flag = !flag;
-        const idUser = randomId('user-');
-        const age = parseInt(((Math.random() + 1) * 60).toString(), 10);
-
-        const user = new User(idUser, names[i], age, `${names[i]}@gmail.com`, flag);
-        usersLocal.push(user);
-    }
-
-    return usersLocal;
-}
+import UserService from '../services/User.service';
 
 const UserCardContainer: FC = () => {
     const [users, setUsers] = useState<User[]>([]);
     const [isLoadingContainer, setIsLoadingContainer] = useState<boolean>(true);
+
+    const [service, setService] = useState<UserService>();
 
     const handleChangeOnline = (id: string) => {
         setUsers((prevUsers) => {
@@ -39,23 +20,28 @@ const UserCardContainer: FC = () => {
             });
         });
     };
+    useEffect(() => {
+        setService(new UserService());
+    }, []);
 
     useEffect(() => {
         const randomTimeWait: number = (Math.random() * (3 - 1) + 1) * 1000;
+        service?.getUsersRandom();
 
         const timeout = setTimeout(() => {
             // Get the users
-            const usersGet: User[] = getUsersRandom();
+            const usersGet: User[] | undefined = service?.users;
 
             // Set the user obtained!
-            setUsers(usersGet);
-            console.log(randomTimeWait);
+            if (usersGet) {
+                setUsers(usersGet);
+            }
 
             setIsLoadingContainer(false);
         }, randomTimeWait);
 
         return () => clearTimeout(timeout);
-    }, []);
+    }, [service, service?.users]);
 
     return (
         <>
